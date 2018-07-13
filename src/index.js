@@ -59,7 +59,7 @@ const CartController = require('./controller/cart')
 
 bot.onText(/^\/[a-zA-Z]+$/, msg => {
     const id = helper.getChatId(msg)
-
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAA', msg.text)
     switch (msg.text) {
         // import data to database
         case '/import':
