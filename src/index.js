@@ -7,7 +7,8 @@ const Bodyparser = require('koa-bodyparser')
 const mongoose = require('mongoose')
 const mongooseOptions = {
     keepAlive: 300000,
-    connectTimeoutMS: 30000
+    connectTimeoutMS: 30000,
+    useNewUrlParser: true
 }
 const helper = require('./helper')
 const keyboard = require('./keyboard')
