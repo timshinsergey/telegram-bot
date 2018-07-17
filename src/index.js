@@ -56,15 +56,14 @@ const QueryController = require('./controller/query')
 const PageController = require('./controller/page')
 const OrderController = require('./controller/order')
 const CartController = require('./controller/cart')
-const database = require('./database.json')
 
 bot.onText(/^\/[a-zA-Z]+$/, msg => {
     const id = helper.getChatId(msg)
     switch (msg.text) {
         // import data to database
         case '/import':
-            // const database = require('./database.json')
-            database['flowers'].forEach(f => new Flower({
+            const database = require('./database.json')
+            database['flowers'].forEach = f => new Flower({
                     uid: f.uid,
                     category: f.category,
                     title: f.title,
@@ -75,7 +74,7 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
                     description: f.description
                 }).save()
                 .then(() => console.log('Товары загружены'))
-                .catch(e => console.log(e)))
+                .catch(e => console.log(e))
             break
 
         case '/start':
