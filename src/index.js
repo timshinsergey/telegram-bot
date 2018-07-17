@@ -6,8 +6,8 @@ const Router = require('koa-router')
 const Bodyparser = require('koa-bodyparser')
 const mongoose = require('mongoose')
 const mongooseOptions = {
-    keepAlive: 300000,
-    connectTimeoutMS: 30000,
+    // keepAlive: 300000,
+    // connectTimeoutMS: 30000,
     useNewUrlParser: true
 }
 const helper = require('./helper')
@@ -63,7 +63,7 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
         // import data to database
         case '/import':
             const database = require('./database.json')
-            database['flowers'].forEach = f => new Flower({
+            database['flowers'].forEach(f => new Flower({
                     uid: f.uid,
                     category: f.category,
                     title: f.title,
@@ -74,7 +74,7 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
                     description: f.description
                 }).save()
                 .then(() => console.log('Товары загружены'))
-                .catch(e => console.log(e))
+                .catch(e => console.log(e)))
             break
 
         case '/start':
