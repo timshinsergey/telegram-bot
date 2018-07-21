@@ -29,7 +29,7 @@ module.exports = {
   findByQuery(user, query) {
     let page = user.pages[query]
 
-    Flower.count({category: query}).then(number => {
+    Flower.countDocuments({category: query}).then(number => {
       const pageTotal = Math.ceil(number/limit)
 
       if ((limit * (page - 1)) < number) {
@@ -100,22 +100,22 @@ module.exports = {
       case 'b_low':
       case 'c_low':
       case 'g_low':
-        count = await Flower.count({category: query}).where('price').lte(2000)
+        count = await Flower.countDocuments({category: query}).where('price').lte(2000)
         break
       case 'b_midlow':
       case 'c_midlow':
       case 'g_midlow':
-        count = await Flower.count({category: query}).where('price').gt(2000).lte(3500)
+        count = await Flower.countDocuments({category: query}).where('price').gt(2000).lte(3500)
         break
       case 'b_midhigh':
       case 'c_midhigh':
       case 'g_midhigh':
-        count = await Flower.count({category: query}).where('price').gte(3500).lte(5000)
+        count = await Flower.countDocuments({category: query}).where('price').gte(3500).lte(5000)
         break
       case 'b_high':
       case 'c_high':
       case 'g_high':
-        count = await Flower.count({category: query}).where('price').gt(5000)
+        count = await Flower.countDocuments({category: query}).where('price').gt(5000)
         break
     }
 
@@ -210,19 +210,19 @@ module.exports = {
     switch (cb_data) {
       case 'b_birthday':
       case 'c_birthday':
-        count = await Flower.count({category: query, reason: 'birthday'})
+        count = await Flower.countDocuments({category: query, reason: 'birthday'})
         break
       case 'b_jubilee':
       case 'c_jubilee':
-        count = await Flower.count({category: query, reason: 'jubilee'})
+        count = await Flower.countDocuments({category: query, reason: 'jubilee'})
         break
       case 'b_wedding':
       case 'c_wedding':
-        count = await Flower.count({category: query, reason: 'wedding'})
+        count = await Flower.countDocuments({category: query, reason: 'wedding'})
         break
       case 'b_love':
       case 'c_love':
-        count = await Flower.count({category: query, reason: 'love'})
+        count = await Flower.countDocuments({category: query, reason: 'love'})
         break
     }
 
