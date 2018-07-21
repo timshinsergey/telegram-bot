@@ -128,22 +128,22 @@ module.exports = {
         case 'b_low':
         case 'c_low':
         case 'g_low':
-          result = await Flower.find({category: query}).where('price').lte(2000).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query}).where('price').lte(2000).limit(limit).skip(limit*(1))
           break
         case 'b_midlow':
         case 'c_midlow':
         case 'g_midlow':
-          result = await Flower.find({category: query}).where('price').gt(2000).lte(3500).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query}).where('price').gt(2000).lte(3500).limit(limit).skip(limit*(1))
           break
         case 'b_midhigh':
         case 'c_midhigh':
         case 'g_midhigh':
-          result = await Flower.find({category: query}).where('price').gte(3500).lte(5000).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query}).where('price').gte(3500).lte(5000).limit(limit).skip(limit*(1))
           break
         case 'b_high':
         case 'c_high':
         case 'g_high':
-          result = await Flower.find({category: query}).where('price').gt(5000).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query}).where('price').gt(5000).limit(limit).skip(limit*(1))
           break
       }
     } else {
@@ -234,19 +234,19 @@ module.exports = {
       switch (cb_data) {
         case 'b_birthday':
         case 'c_birthday':
-          result = await Flower.find({category: query, reason: 'birthday'}).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query, reason: 'birthday'}).limit(limit).skip(limit*(1))
           break
         case 'b_jubilee':
         case 'c_jubilee':
-          result = await Flower.find({category: query, reason: 'jubilee'}).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query, reason: 'jubilee'}).limit(limit).skip(limit*(1))
           break
         case 'b_wedding':
         case 'c_wedding':
-          result = await Flower.find({category: query, reason: 'wedding'}).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query, reason: 'wedding'}).limit(limit).skip(limit*(1))
           break
         case 'b_love':
         case 'c_love':
-          result = await Flower.find({category: query, reason: 'love'}).limit(limit).skip(limit*(page-1))
+          result = await Flower.find({category: query, reason: 'love'}).limit(limit).skip(limit*(1))
           break
       }
     } else {
