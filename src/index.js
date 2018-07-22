@@ -57,63 +57,6 @@ const PageController = require('./controller/page')
 const OrderController = require('./controller/order')
 const CartController = require('./controller/cart')
 
-bot.onText(/^\/[a-zA-Z]+$/, msg => {
-    const id = helper.getChatId(msg)
-    switch (msg.text) {
-        // import data to database
-        case '/import':
-            const database = require('./database.json')
-            database['flowers'].forEach(f => new Flower({
-                    uid: f.uid,
-                    category: f.category,
-                    title: f.title,
-                    image: f.image,
-                    price: parseInt((f.price).replace(' ', ''), 10),
-                    reason: f.reason,
-                    link: f.link,
-                    description: f.description
-                }).save()
-                .then(() => console.log('Товары загружены'))
-                .catch(e => console.log(e)))
-            break
-
-        case '/start':
-        case '/help':
-            bot.sendMessage(id, helper.description).then(() => {
-                return bot.sendMessage(id, `Выберите пункт меню`, {
-                    reply_markup: {
-                        keyboard: keyboard.home,
-                        resize_keyboard: true
-                    }
-                })
-            }).catch(err => console.log(err))
-            break
-        case '/cart':
-            User.findOne({
-                    userId: id
-                })
-                .then(user => CartController.showCart(user))
-                .catch(err => console.log(err))
-            break
-        case '/contacts':
-            return bot.sendMessage(id, helper.contacts)
-        case '/bouquets':
-            MainController.sendCallback(msg, 'bouquets')
-            break
-        case '/compose':
-            MainController.sendCallback(msg, 'compose')
-            break
-        case '/gifts':
-            MainController.sendCallback(msg, 'gifts')
-            break
-        case '/reasons':
-            MainController.showReasons(id)
-            break
-        case '/prices':
-            MainController.choosePriceForAll(msg)
-            break
-    }
-})
 bot.on('message', msg => {
 
     const id = helper.getChatId(msg)
@@ -507,4 +450,62 @@ bot.on('callback_query', msg => {
                     .catch((err) => console.log(err))
             }
         }).catch(err => console.log(err))
+})
+
+bot.onText(/^\/[a-zA-Z]+$/, msg => {
+    const id = helper.getChatId(msg)
+    switch (msg.text) {
+        // import data to database
+        case '/import':
+            const database = require('./database.json')
+            database['flowers'].forEach(f => new Flower({
+                    uid: f.uid,
+                    category: f.category,
+                    title: f.title,
+                    image: f.image,
+                    price: parseInt((f.price).replace(' ', ''), 10),
+                    reason: f.reason,
+                    link: f.link,
+                    description: f.description
+                }).save()
+                .then(() => console.log('Товары загружены'))
+                .catch(e => console.log(e)))
+            break
+
+        case '/start':
+        case '/help':
+            bot.sendMessage(id, helper.description).then(() => {
+                return bot.sendMessage(id, `Выберите пункт меню`, {
+                    reply_markup: {
+                        keyboard: keyboard.home,
+                        resize_keyboard: true
+                    }
+                })
+            }).catch(err => console.log(err))
+            break
+        case '/cart':
+            User.findOne({
+                    userId: id
+                })
+                .then(user => CartController.showCart(user))
+                .catch(err => console.log(err))
+            break
+        case '/contacts':
+            return bot.sendMessage(id, helper.contacts)
+        case '/bouquets':
+            MainController.sendCallback(msg, 'bouquets')
+            break
+        case '/compose':
+            MainController.sendCallback(msg, 'compose')
+            break
+        case '/gifts':
+            MainController.sendCallback(msg, 'gifts')
+            break
+        case '/reasons':
+            MainController.showReasons(id)
+            break
+        case '/prices':
+            MainController.choosePriceForAll(msg)
+            break
+    }
 })
