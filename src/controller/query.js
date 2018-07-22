@@ -2,6 +2,7 @@ const bot = require('../index')
 const Flower = require('../model/flower.model')
 const rub = require('../globals').rub
 const limit = require('../globals').limit
+console.log(`${Flower} WHIS IS!!!`)
 
 module.exports = {
   findFlower(query, userId) {
