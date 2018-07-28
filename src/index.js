@@ -61,6 +61,7 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
     // import data to database
     case '/import':
       const database = require ('./database.json')
+      console.log(database+'sdasdasfafssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafa')
       database['flowers'].forEach(f => new Flower({
         uid: f.uid,
         category: f.category,
