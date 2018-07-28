@@ -61,7 +61,7 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
     // import data to database
     case '/import':
       const database = require ('./database.json')
-      console.log(database+'sdasdasfafssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafa')
+      console.log(database['flowers']+'sdasdasfafss')
       database['flowers'].forEach(f => new Flower({
         uid: f.uid,
         category: f.category,
@@ -92,8 +92,6 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
         .then(user => CartController.showCart(user))
         .catch(err => console.log(err))
       break
-    case '/contacts':
-      return bot.sendMessage(id, helper.contacts)
     case '/bouquets':
       MainController.sendCallback(msg, 'bouquets')
       break
